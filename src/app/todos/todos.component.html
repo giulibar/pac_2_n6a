@@ -1,8 +1,76 @@
-<div class="container">
-  <h1 class="mt-5">Realizar la consigna debajo de este mensaje</h1>
-</div>
+<div class="flex">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <caption
+      class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      <div class="flex items-center">
+        <input [(ngModel)]="searchTerm" type="text"
+          class="block m-2 text-gray-700 bg-gray-100 dark:bg-gray-700 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Search User">
 
-<!-- Html faltante -->
-<div>
-  <button class="btn btn-primary" (click)="randomMethod()">Search</button>
+        <button *ngIf="searchTerm.trim().length > 0" (click)="onSearch()"
+          class="ml-2 block m-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button">
+          Search
+        </button>
+      </div>
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          userId
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Id
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Title
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Is completed
+        </th>
+        <th scope="col" class="px-6 py-3">
+
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="filteredUsers.length === 0" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td colspan="4" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+          No results found
+        </td>
+      </tr>
+      <tr *ngFor="let user of filteredUsers"
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{user.userId}}
+        </td>
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{user.id}}
+        </td>
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{user.title}}
+        </td>
+        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{user.completed}}
+        </td>
+        <td class="px-6 py-4 text-right">
+          <button (click)="showDetail(user.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            type="button">
+            More Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedUser"
+    class="ml-4 border rounded-lg p-4 mt-4 ml-4 flex-grow-0 w-80 dark:bg-gray-800 dark:border-gray-700 text-white">
+    <h3 class="text-lg font-semibold">Todo Detail</h3>
+    <p><strong>ID:</strong> {{selectedUser.id}}</p>
+    <p><strong>Title:</strong> {{selectedUser.title}}</p>
+    <p><strong>Completed:</strong> {{selectedUser.completed ? 'Yes' : 'No'}}</p>
+    <button (click)="hideDetail()" class="text-blue-600 dark:text-blue-500 hover:underline mt-2"
+      type="button">Close</button>
+  </div>
+
 </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Fixed navbar</a>
     <button
@@ -26,6 +26,31 @@
       </ul>
     </div>
   </div>
+</nav> -->
+
+<!-- Comente el codigo anterior ya que al usar tailwind en vez de Bootstrap se rompian los estilos -->
+
+
+<nav class="bg-gray-800 mb-4">
+  <div class="container mx-auto px-4 py-2">
+    <div class="flex justify-between items-center">
+      <a href="#" class="text-white text-lg font-semibold">Mi Sitio</a>
+      <ul class="flex space-x-4">
+        <li>
+          <a href="/home" class="text-white">Home</a>
+        </li>
+        <li>
+          <a href="/todos" class="text-white">Todos</a>
+        </li>
+        <li>
+          <a href="/consigna" class="text-white">Consigna</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+
+
+
 
 <router-outlet></router-outlet>
